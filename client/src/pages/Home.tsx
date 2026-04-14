@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import HouseCard from '../components/HouseCard';
 import { Search, Filter, X, Sparkles, MapPin, BadgeIndianRupee, Home as HomeIcon } from 'lucide-react';
 

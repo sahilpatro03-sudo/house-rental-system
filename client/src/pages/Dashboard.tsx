@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useAuth } from '../context/AuthContext';
 import { Plus, Trash2, Edit3, MapPin, IndianRupee, Bed, LayoutDashboard, PlusSquare, X, Sparkles, AlertCircle } from 'lucide-react';
 
@@ -23,9 +23,7 @@ const Dashboard: React.FC = () => {
   const fetchMyHouses = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('/api/houses/my-listings', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await api.get('/api/houses/my-listings');
       setHouses(response.data);
     } catch (err) {
       console.error('Error fetching houses:', err);
@@ -47,12 +45,10 @@ const Dashboard: React.FC = () => {
     setSubmitting(true);
     setError('');
     try {
-      await axios.post('/api/houses', {
+      await api.post('/api/houses', {
         ...formData,
         rent: Number(formData.rent),
         rooms: Number(formData.rooms)
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
       });
       setShowAddModal(false);
       setFormData({
@@ -75,9 +71,7 @@ const Dashboard: React.FC = () => {
   const handleDelete = async (id: number) => {
     if (!window.confirm('Are you sure you want to delete this listing?')) return;
     try {
-      await axios.delete(`/api/houses/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await api.delete(`/api/houses/${id}`);
       fetchMyHouses();
     } catch (err) {
       alert('Failed to delete listing');

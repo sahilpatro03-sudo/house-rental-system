@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { UserPlus, Mail, Lock, User, Briefcase, AlertCircle, Sparkles, ArrowRight } from 'lucide-react';
 
 const Register: React.FC = () => {
@@ -19,7 +19,7 @@ const Register: React.FC = () => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('/api/auth/register', formData);
+      await api.post('/api/auth/register', formData);
       navigate('/login');
     } catch (err: any) {
       setError(err.response?.data?.error || 'Failed to register');
