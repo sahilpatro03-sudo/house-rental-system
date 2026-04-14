@@ -21,7 +21,7 @@ const Home: React.FC = () => {
       Object.entries(filters).forEach(([key, value]) => {
         if (value) params.append(key, value);
       });
-      const response = await axios.get(`/api/houses?${params.toString()}`);
+      const response = await api.get(`/api/houses?${params.toString()}`);
       setHouses(response.data);
     } catch (error) {
       console.error('Error fetching houses:', error);

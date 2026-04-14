@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { Plus, Trash2, Edit3, MapPin, IndianRupee, Bed, LayoutDashboard, PlusSquare, X, Sparkles, AlertCircle } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
-  const { token, user } = useAuth();
+  const { token } = useAuth();
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
